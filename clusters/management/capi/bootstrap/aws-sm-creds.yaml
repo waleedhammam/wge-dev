@@ -6,7 +6,7 @@ metadata:
 spec:
   clusterSelector:
     matchLabels:
-      secretmanager: aws
+      weave.works/flux: "bootstrap"
   resources:
   - kind: Secret
     name: aws-sm-crs-secret
