@@ -4,9 +4,6 @@ metadata:
   name: awssm-crs
   namespace: default
 spec:
-  clusterSelector:
-    matchLabels:
-      weave.works/flux: "bootstrap"
   resources:
   - kind: Secret
     name: aws-sm-crs-secret
