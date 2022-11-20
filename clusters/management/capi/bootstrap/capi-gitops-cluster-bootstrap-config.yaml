@@ -31,6 +31,9 @@ spec:
           envFrom:
             - secretRef:
                 name: my-pat
+          env:
+            - name: EXP_CLUSTER_RESOURCE_SET
+              value: true
       restartPolicy: Never
       volumes:
         - name: kubeconfig
