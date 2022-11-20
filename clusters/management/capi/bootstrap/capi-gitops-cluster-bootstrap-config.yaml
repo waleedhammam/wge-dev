@@ -11,7 +11,8 @@ spec:
     generateName: "run-gitops-{{ .ObjectMeta.Name }}"
     spec:
       containers:
-        - image: ghcr.io/fluxcd/flux-cli:v0.29.5
+        - image: ghcr.io/fluxcd/flux-cli:v0.32.0
+          imagePullPolicy: Alway
           name: flux-bootstrap
           resources: {}
           volumeMounts:
@@ -23,7 +24,7 @@ spec:
               "bootstrap",
               "github",
               "--kubeconfig=/etc/gitops/value",
-              "--owner=$GITHUB_USER",
+              "--owner=waleedhammam",
               "--repository=wge-dev",
               "--path=./clusters/{{ .ObjectMeta.Namespace }}/{{ .ObjectMeta.Name }}",
             ]
