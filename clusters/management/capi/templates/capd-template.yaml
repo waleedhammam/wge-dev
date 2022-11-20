@@ -40,6 +40,7 @@ spec:
         namespace: "${NAMESPACE}"
         labels:
           cni: calico
+          secretmanager: aws
       spec:
         clusterNetwork:
           pods:
