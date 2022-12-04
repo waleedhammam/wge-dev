@@ -4,7 +4,7 @@ metadata:
   name: cluster-template-development
   namespace: default
 spec:
-  description: This is the std. CAPD template {{.Count}}
+  description: This is the std. CAPD template
   params:
     - name: CLUSTER_NAME
       required: true
