@@ -1,7 +1,7 @@
 apiVersion: capi.weave.works/v1alpha1
 kind: CAPITemplate
 metadata:
-  name: cluster-template-development
+  name: custom-cluster-template-development
   namespace: default
 spec:
   description: This is the std. CAPD template
