@@ -3,7 +3,7 @@ kind: HelmRepository
 metadata:
   creationTimestamp: null
   name: weaveworks-charts
-  namespace: flux-system
+  namespace: external-secrets
 spec:
   interval: 1m0s
   timeout: 1m0s
@@ -17,7 +17,7 @@ metadata:
   labels:
     weave.works/applied-layer: layer-0
   name: external-secrets
-  namespace: flux-system
+  namespace: external-secrets
 spec:
   chart:
     spec:
@@ -26,7 +26,7 @@ spec:
         apiVersion: source.toolkit.fluxcd.io/v1beta2
         kind: HelmRepository
         name: weaveworks-charts
-        namespace: flux-system
+        namespace: external-secrets
       version: 0.6.1
   install:
     crds: CreateReplace

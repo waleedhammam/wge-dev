@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
   name: weaveworks-charts
-  namespace: flux-system
+  namespace: external-secrets
 spec:
   interval: 1m0s
   timeout: 1m0s
