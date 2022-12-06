@@ -9,4 +9,4 @@ spec:
       secretmanager: aws
   resources:
   - kind: Secret
-    name: my-pat-secret
+    name: my-pat-crs-secret
