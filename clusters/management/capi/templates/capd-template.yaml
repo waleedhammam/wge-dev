@@ -1,8 +1,10 @@
 apiVersion: capi.weave.works/v1alpha1
 kind: CAPITemplate
 metadata:
-  name: custom-cluster-template-development
+  name: waleed-cluster-template-development
   namespace: default
+  annotations:
+    templates.weave.works/profiles-enabled: "true"
 spec:
   description: This is the std. CAPD template
   params:
@@ -30,7 +32,6 @@ spec:
           weave.works/apps: "capd"
         annotations:
           metadata.weave.works/dashboard.prometheus: https://prometheus.io/
-          templates.weave.works/profiles-enabled: "true"
       spec:
         capiClusterRef:
           name: "${CLUSTER_NAME}"
