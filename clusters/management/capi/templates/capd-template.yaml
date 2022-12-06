@@ -30,6 +30,7 @@ spec:
           weave.works/apps: "capd"
         annotations:
           metadata.weave.works/dashboard.prometheus: https://prometheus.io/
+          templates.weave.works/profiles-enabled: "true"
       spec:
         capiClusterRef:
           name: "${CLUSTER_NAME}"
