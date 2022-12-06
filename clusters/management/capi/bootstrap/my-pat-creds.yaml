@@ -1,0 +1,12 @@
+apiVersion: addons.cluster.x-k8s.io/v1alpha3
+kind: ClusterResourceSet
+metadata:
+  name: my-pat
+  namespace: default
+spec:
+  clusterSelector:
+    matchLabels:
+      secretmanager: aws
+  resources:
+  - kind: Secret
+    name: my-pat
