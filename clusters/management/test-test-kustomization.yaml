@@ -1,0 +1,16 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  creationTimestamp: null
+  name: test
+  namespace: test
+spec:
+  interval: 10m0s
+  path: test
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: external-secrets
+    namespace: external-secrets
+  targetNamespace: test
+status: {}
