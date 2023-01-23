@@ -15,7 +15,7 @@ spec:
       description: Namespace to create the cluster in
     - name: KUBERNETES_VERSION
       description: Kubernetes version to use for the cluster
-      options: ["1.19.11", "1.21.1", "1.22.0", "1.24"]
+      options: ["1.19.11", "1.21.1", "1.22.0", "1.24.0"]
     - name: CONTROL_PLANE_MACHINE_COUNT
       description: Number of control planes
       options: ["1", "2", "3"]
