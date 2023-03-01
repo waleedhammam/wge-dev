@@ -1,0 +1,40 @@
+apiVersion: v1
+data:
+    password: ENC[AES256_GCM,data:7o7BVDPBpWCN2E6i,iv:BL0N1Mg8DuZAFYY0daEodCUujQ0blYW9RFFY/82qhtE=,tag:baeljYeekkVgFqb5HDxWUA==,type:str]
+    user: ENC[AES256_GCM,data:WUcHV8WNRtU=,iv:cdHjliJ2sXukEW2z2Q3vQ3TDRIXrBSy+H2WluYg1Q4w=,tag:lrSiXJK7X32oD0lG3NW5kQ==,type:str]
+kind: Secret
+metadata:
+    creationTimestamp: null
+    name: basic-auth
+    namespace: default
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age: []
+    lastmodified: "2023-03-01T10:20:14Z"
+    mac: ENC[AES256_GCM,data:KxiIAKJrWrSN4u2mOn6g2Ib7J0mFdGfSS4lACQv/QVLR7YhzfH5bdusQ7POlcaabhQhmHzFyCpeA8sunmrV1qnIRJkVO4BnEKiO4ny633HJBwNJQqnN6L4gX0IhucuTR+fs4+0jG7vXBsTzZQoKf2Br0tGzSBTmraB9Q/wHzpOg=,iv:nujCuqTYKom0XTS5VY08LaHCyst/2hnMcLaZ+AYdwJk=,tag:rA+yhqBJKOWQavoR5AmBlw==,type:str]
+    pgp:
+        - created_at: "2023-03-01T10:20:14Z"
+          enc: |
+            -----BEGIN PGP MESSAGE-----
+
+            hQIMAxVQ52pYnVixAQ//f9WcDb4x8O+IHdomlvWqpQ0QGqCRAQPbVf8AHj7OFlZX
+            LrOaQCQeJfXS77+0mXNGUf97drnVCg76AI+Nz3WBoPtqo3xPvxsBmwcIu162XDaB
+            dOzjeQSK5j+zyUHsGemVEV8uWvBfe8HkTNCaJ1LQKmz9yiv9MSb3q1FNtigbmRB0
+            Gmurol5uWsho28MswvNGALEWCKW37RIq6ysNdFScXWRgP3MpOoANX7BuRXH3pj5X
+            7Rjzepd7FVy8sx3HiM1HVEvAMFNx9wHlDBB+5bwXj34Z5XTXJai44bBUtYxnUCbd
+            iDU2Byx5n76em1KYmcVJ5OdSxnXh3lilKdK10R66fLOCtBFAMCUQAnwk2CvQjca5
+            iZ8/IWHzy8rIBHycCFzTDbmdKmZmbT4hu88EWZZuzXVN+a29ZJtKd7oeps+74sS3
+            eQ0G6CZiWemzK/RLEiqMuVDXkOCoUFzsWHWm1Go6yasO2f1bLYo/fyvivR7W5OJZ
+            kU7bd07fLA9ZjVOezzeLkDYSQ0ITJnFEKp3QP/ImC5X3Q+sb1yu1m8ddOvK4MfjM
+            UJ80FpEkCF+L8E6ooMOsONfBQCp7aDxa4fsQj5vqI35oQ5BEca70t8MtaeUAW1QD
+            YYeMB+q/XRcYtM0J3MVzYbATc097ODCqU5uACcEsnEOYbSxufvFlfFG9JNBFzfjS
+            XgE/wmQFlwJTZHK7eKsWtulRMu4v5tYIbqyQ32yq6ZL3JdJgSUA11HJbFWepmaAW
+            3pJvkwhFm4PtqVtHTeKbAOnR75E7ZEKkvZMzpu2JXasSHSHjROhb3D5TLaEICkc=
+            =V4WA
+            -----END PGP MESSAGE-----
+          fp: 43AFA021D7F788DD8C1AA8D88B80349C10452D20
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3
