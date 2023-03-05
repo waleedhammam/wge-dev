@@ -28,7 +28,7 @@ spec:
         name: "${CLUSTER_NAME}"
         namespace: "${NAMESPACE}"
         labels:
-          weave.works/flux: bootstrap
+          weave.works/flux: "bootstrap"
           weave.works/apps: "capd"
         annotations:
           metadata.weave.works/dashboard.prometheus: https://prometheus.io/
