@@ -30,6 +30,7 @@ spec:
         labels:
           weave.works/flux: "bootstrap"
           weave.works/apps: "capd"
+          weave.works/sops: "bootstrap"
         annotations:
           metadata.weave.works/dashboard.prometheus: https://prometheus.io/
       spec:

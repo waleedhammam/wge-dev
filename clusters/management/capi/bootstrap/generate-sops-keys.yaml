@@ -1,0 +1,32 @@
+apiVersion: capi.weave.works/v1alpha1
+kind: ClusterBootstrapConfig
+metadata:
+  name: sops-installation
+  namespace: default
+spec:
+  clusterSelector:
+    matchLabels:
+      weave.works/sops: "bootstrap"
+  jobTemplate:
+    generateName: "run-gitops-sops-{{ .ObjectMeta.Name }}"
+    spec:
+      containers:
+        - image: waleedhammam/sops:1.0.0
+          imagePullPolicy: Always
+          name: sops-bootstrap
+          resources: {}
+          volumeMounts:
+            - name: kubeconfig
+              mountPath: "/etc/gitops"
+              readOnly: true
+          envFrom:
+            - secretRef:
+                name: my-pat
+          env:
+            - name: EXP_CLUSTER_RESOURCE_SET
+              value: "true"
+      restartPolicy: Never
+      volumes:
+        - name: kubeconfig
+          secret:
+            secretName: "{{ .ObjectMeta.Name }}-kubeconfig"
