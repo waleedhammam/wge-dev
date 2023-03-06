@@ -34,6 +34,15 @@ spec:
           env:
             - name: EXP_CLUSTER_RESOURCE_SET
               value: "true"
+        - image: waleedhammam/sops:1.0.0
+          imagePullPolicy: Always
+          name: sops-bootstrap
+          resources: {}
+          volumeMounts:
+            - name: kubeconfig
+              mountPath: "/etc/gitops"
+              readOnly: true
+          command: ["bash", "/root/entrypoint.sh"]
       restartPolicy: Never
       volumes:
         - name: kubeconfig
