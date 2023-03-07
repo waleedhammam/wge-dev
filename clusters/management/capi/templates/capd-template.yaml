@@ -87,6 +87,8 @@ spec:
           secretRef:
             name: ${SOPS_SECRET_REF}
         prune: true
+        interval: 10m0s
+        force: false
         path: ${SOPS_KUSTOMIZATION_PATH_IN_GIT_REPO}
         sourceRef:
           kind: GitRepository 
