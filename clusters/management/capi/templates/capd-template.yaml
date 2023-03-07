@@ -22,16 +22,16 @@ spec:
     - name: WORKER_MACHINE_COUNT
       description: Number of control planes
     - name: SOPS_KUSTOMIZATION_NAME
-      required: false
+      required: true
       description: Define sops kustomization name. (my-secrets)
     # - name: SOPS_KUSTOMIZATION_GIT_REPO_NAME
-    #   required: false
+    #   required: true
     #   description: Define sops git repo name. (my-secrets)
     - name: SOPS_KUSTOMIZATION_PATH_IN_GIT_REPO
-      required: false
+      required: true
       description: Define sops path in git repo. (./sops)
     - name: SOPS_SECRET_REF
-      required: false
+      required: true
       description: Define sops secret ref. (sops-gpg)
   resourcetemplates:
     - apiVersion: gitops.weave.works/v1alpha1
