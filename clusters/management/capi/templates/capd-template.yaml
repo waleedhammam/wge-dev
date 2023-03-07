@@ -42,7 +42,7 @@ spec:
         labels:
           weave.works/flux: "bootstrap"
           weave.works/apps: "capd"
-          weave.works/sops: "bootstrap ${SOPS_KUSTOMIZATION_NAME} in repo ${SOPS_KUSTOMIZATION_GIT_REPO_NAME} with path {SOPS_KUSTOMIZATION_PATH_IN_GIT_REPO}"
+          weave.works/sops: "bootstrap ${SOPS_KUSTOMIZATION_NAME} in repo ${SOPS_KUSTOMIZATION_GIT_REPO_NAME} with path ${SOPS_KUSTOMIZATION_PATH_IN_GIT_REPO}"
         annotations:
           metadata.weave.works/dashboard.prometheus: https://prometheus.io/
       spec:
