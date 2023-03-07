@@ -62,6 +62,7 @@ metadata:
   name: my-secrets
   namespace: flux-system
 spec:
+  prune: true
   decryption:
     provider: sops
     secretRef:
