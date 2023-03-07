@@ -5,6 +5,7 @@ metadata:
   namespace: default
   annotations:
     templates.weave.works/profiles-enabled: "true"
+    templates.weave.works/sops-enabled: "true"
 spec:
   description: This is the std. CAPD template
   params:
