@@ -85,14 +85,14 @@ spec:
         decryption:
           provider: sops
           secretRef:
-            name: ${SOPS_SECRET_REF}
+            name: sops
         prune: true
         interval: 10m0s
         force: false
         path: ${SOPS_KUSTOMIZATION_PATH_IN_GIT_REPO}
         sourceRef:
           kind: GitRepository 
-          name: flux-system
+          name: ${SOPS_KUSTOMIZATION_GIT_REPO_NAME}
 
     - apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
       kind: DockerCluster
