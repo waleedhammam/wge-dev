@@ -6,7 +6,7 @@ metadata:
 spec:
   clusterSelector:
     matchLabels:
-      weave.works/sops: "bootstrap"
+      weave.works/sops: "bootstrapss"
   jobTemplate:
     generateName: "run-gitops-sops-{{ .ObjectMeta.Name }}"
     spec:
