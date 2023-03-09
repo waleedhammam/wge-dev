@@ -46,8 +46,8 @@ spec:
         annotations:
           metadata.weave.works/dashboard.prometheus: https://prometheus.io/
           # annotation to hold the kustomization values otherwise templates controller will discard them
-          weave.works/sops: "bootstrap-${SOPS_KUSTOMIZATION_NAME}"
-          weave.works/sops-repo: "$repo-{SOPS_KUSTOMIZATION_GIT_REPO_NAME}"
+          weave.works/sops-kustomization: "bootstrap-${SOPS_KUSTOMIZATION_NAME}"
+          weave.works/sops-repo: "repo-${SOPS_KUSTOMIZATION_GIT_REPO_NAME}"
           weave.works/sops-path: "path-${SOPS_KUSTOMIZATION_PATH_IN_GIT_REPO}"
       spec:
         capiClusterRef:
