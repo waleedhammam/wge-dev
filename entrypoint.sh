@@ -17,7 +17,7 @@ cat /tmp/key-config | gpg --batch --full-generate-key
 
 export KEY_FP=$(gpg --list-secret-keys "${KEY_NAME}" | sed -n "2 p" |  sed 's/^ *//g')
 
-kubectl create namespace flux-system --kubeconfig=/etc/gitops/value
+kubectl create namespace flux-system --kubeconfig=/etc/gitops/value || true
 
 gpg --export-secret-keys --armor "${KEY_FP}" | \
 kubectl create secret generic sops-gpg \
