@@ -1,4 +1,7 @@
 #!/bin/bash
+export KUBECONFIG=/etc/gitops/value
+export CLUSTER_NAME="temp"
+
 echo "generating keys"
 echo """%no-protection
 Key-Type: 1
@@ -20,12 +23,18 @@ gpg --export-secret-keys --armor "${KEY_FP}" | \
 kubectl create secret generic sops-gpg \
 --namespace=flux-system \
 --from-file=sops.asc=/dev/stdin \
---kubeconfig=/etc/gitops/value
+
 echo "creating success"
 
 echo "deleting secret key"
 gpg --batch --yes --delete-secret-keys  "${KEY_FP}"
 echo "deleted"
+
+kubectl get gitrepository flux-system -n flux-system -o jsonpath="{.spec.url}" > /tmp/repo.url
+kubectl get kustomization my-secrets -n flux-system -o -o jsonpath="{.spec.path}" > /tmp/path.url
+
+cat /tmp/repo.url | git clone && cd "$_"
+cat /tmp/path.url | cd
 
 cat <<EOF > ./.sops.yaml
 creation_rules:
@@ -35,5 +44,12 @@ creation_rules:
 EOF
 
 gpg --export --armor "${KEY_FP}" > ./.sops.pub.asc
+
+rm /tmp/repo.url /tmp/path.url
+
+git checkout -b cluster-${CLUSTER_NAME}
+git add .
+git commit -m "add public key and sops configuration" --quiet
+git push --quiet
 
 echo "Setup complete"
