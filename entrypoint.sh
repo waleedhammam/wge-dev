@@ -42,7 +42,7 @@ gpg --export --armor "${KEY_FP}" > ./.sops.pub.asc
 git checkout -b sops-${KUSTOMIZATION_NAME}
 git add .
 git commit -m "add public key and sops configuration" --quiet
-git push --set-upstream origin cluster-temp
+git push --set-upstream origin sops-${KUSTOMIZATION_NAME}
 git push --quiet
 echo "=> pushed"
 
