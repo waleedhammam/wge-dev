@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "generating keys"
 echo """%no-protection
 Key-Type: 1
 Key-Length: 4096
@@ -12,17 +13,19 @@ Name-Real: ${KEY_NAME}
 cat /tmp/key-config | gpg --batch --full-generate-key
 
 export KEY_FP=$(gpg --list-secret-keys "${KEY_NAME}" | sed -n "2 p" |  sed 's/^ *//g')
+echo "generate success"
 
-kubectl create namespace flux-system --kubeconfig=/etc/gitops/value || true
-
+echo "creating secret on the cluster"
 gpg --export-secret-keys --armor "${KEY_FP}" | \
 kubectl create secret generic sops-gpg \
 --namespace=flux-system \
 --from-file=sops.asc=/dev/stdin \
 --kubeconfig=/etc/gitops/value
+echo "creating success"
 
-# delete secret key
+echo "deleting secret key"
 gpg --batch --yes --delete-secret-keys  "${KEY_FP}"
+echo "deleted"
 
 cat <<EOF > ./.sops.yaml
 creation_rules:

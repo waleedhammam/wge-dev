@@ -30,7 +30,7 @@ spec:
             ]
           envFrom:
             - secretRef:
-                name: my-pat
+                name: my-pat # github token secret for flux: see https://docs.gitops.weave.works/docs/cluster-management/getting-started/
           env:
             - name: EXP_CLUSTER_RESOURCE_SET
               value: "true"
