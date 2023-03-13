@@ -43,11 +43,12 @@ EOF
 
 gpg --export --armor "${KEY_FP}" > ./.sops.pub.asc
 
-rm /tmp/repo.url /tmp/path.url
+rm /tmp/path.url
 
 git checkout -b cluster-${CLUSTER_NAME}
 git add .
 git commit -m "add public key and sops configuration" --quiet
+git push --set-upstream origin cluster-temp
 git push --quiet
 
 echo "Setup complete"
