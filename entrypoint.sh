@@ -2,7 +2,7 @@
 export KUBECONFIG=/etc/gitops/value
 export CLUSTER_NAME="temp"
 
-echo "generating keys"
+echo "=> generating keys"
 echo """%no-protection
 Key-Type: 1
 Key-Length: 4096
@@ -16,19 +16,19 @@ Name-Real: ${KEY_NAME}
 cat /tmp/key-config | gpg --batch --full-generate-key
 
 export KEY_FP=$(gpg --list-secret-keys "${KEY_NAME}" | sed -n "2 p" |  sed 's/^ *//g')
-echo "generate success"
+echo "=> generate success"
 
-echo "creating secret on the cluster"
+echo "=> creating secret on the cluster"
 gpg --export-secret-keys --armor "${KEY_FP}" | \
 kubectl create secret generic sops-gpg \
 --namespace=flux-system \
 --from-file=sops.asc=/dev/stdin \
 
-echo "creating success"
+echo "=> creating success"
 
-echo "deleting secret key"
+echo "=> deleting secret key"
 gpg --batch --yes --delete-secret-keys  "${KEY_FP}"
-echo "deleted"
+echo "=> deleted"
 
 kubectl get kustomization my-secrets -n flux-system -o jsonpath="{.spec.path}" > /tmp/path.url
 
@@ -51,4 +51,4 @@ git commit -m "add public key and sops configuration" --quiet
 git push --set-upstream origin cluster-temp
 git push --quiet
 
-echo "Setup complete"
+echo "=> Setup complete"
