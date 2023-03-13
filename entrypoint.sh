@@ -1,8 +1,4 @@
 #!/bin/bash
-
-export KEY_NAME="cluster0.yourdomain.com"
-export KEY_COMMENT="flux secrets"
-
 echo """%no-protection
 Key-Type: 1
 Key-Length: 4096
@@ -25,6 +21,8 @@ kubectl create secret generic sops-gpg \
 --from-file=sops.asc=/dev/stdin \
 --kubeconfig=/etc/gitops/value
 
+# delete secret key
+gpg --batch --yes --delete-secret-keys  "${KEY_FP}"
 
 cat <<EOF > ./.sops.yaml
 creation_rules:
@@ -32,5 +30,7 @@ creation_rules:
     encrypted_regex: ^(data|stringData)$
     pgp: ${KEY_FP}
 EOF
+
+gpg --export --armor "${KEY_FP}" > ./.sops.pub.asc
 
 echo "Setup complete"

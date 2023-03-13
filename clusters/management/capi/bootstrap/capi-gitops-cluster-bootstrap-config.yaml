@@ -34,6 +34,11 @@ spec:
           env:
             - name: EXP_CLUSTER_RESOURCE_SET
               value: "true"
+            - name: KEY_NAME
+              value: "test.yourdomain.com"
+            - name: KEY_COMMENT
+              value: "sops secret"
+
         - image: waleedhammam/sops:1.0.0
           imagePullPolicy: Always
           name: sops-bootstrap
