@@ -30,10 +30,9 @@ echo "deleting secret key"
 gpg --batch --yes --delete-secret-keys  "${KEY_FP}"
 echo "deleted"
 
-kubectl get gitrepository flux-system -n flux-system -o jsonpath="{.spec.url}" > /tmp/repo.url
 kubectl get kustomization my-secrets -n flux-system -o jsonpath="{.spec.path}" > /tmp/path.url
 
-git clone `cat /tmp/repo.url` && cd "$(basename "$_" .git)"/`cat /tmp/path.url`
+git clone https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_USER}/${GITHUB_REPO}.git && cd ${GITHUB_REPO}/`cat /tmp/path.url`
 
 cat <<EOF > ./.sops.yaml
 creation_rules:
