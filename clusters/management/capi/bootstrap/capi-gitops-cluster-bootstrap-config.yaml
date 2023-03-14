@@ -54,8 +54,6 @@ spec:
               value: "sops secret comment"
             - name: SOPS_SECRET_REF   # name of the secret that will be used for sops on the cluster
               value: "sops-gpg"
-            - name: KUSTOMIZATION_NAME
-              value: "my-secrets"
             - name: CLUSTER_NAME
               value: "{{ .ObjectMeta.Name }}"
             - name: CLUSTER_NAMESPACE
