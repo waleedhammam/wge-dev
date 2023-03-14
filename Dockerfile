@@ -2,10 +2,6 @@ FROM ubuntu:22.04
 
 ARG SOPS_VERSION="v3.7.3"
 
-# default values for key name and comment to generate public & private keys
-ENV KEY_NAME="cluster0.yourdomain.com"
-ENV KEY_COMMENT="flux secrets"
-
 RUN apt-get update && apt-get -y install --no-install-recommends git curl gnupg openssl ca-certificates && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
