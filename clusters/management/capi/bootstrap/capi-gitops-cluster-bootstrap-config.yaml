@@ -24,8 +24,8 @@ spec:
               "bootstrap",
               "github",
               "--kubeconfig=/etc/gitops/value",
-              "--owner=${GITHUB_USER}",
-              "--repository=${GITHUB_REPO}",
+              "--owner=waleedhammam",
+              "--repository=wge-dev",
               "--path=./clusters/{{ .ObjectMeta.Namespace }}/{{ .ObjectMeta.Name }}",
             ]
           envFrom:
