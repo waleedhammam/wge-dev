@@ -23,14 +23,11 @@ spec:
     - name: WORKER_MACHINE_COUNT
       description: Number of control planes
     - name: SOPS_KUSTOMIZATION_NAME
-      required: false
+      required: true
       description: Define sops kustomization name. (my-secrets)
-    - name: SOPS_KUSTOMIZATION_GIT_REPO_NAME
-      required: false
-      description: Define sops git repo name. (flux-system)
-    - name: SOPS_KUSTOMIZATION_PATH_IN_GIT_REPO
-      required: false
-      description: Define sops path in git repo. (./sops)
+    - name: SOPS_SECRET_REF
+      required: true
+      description: Define sops kustomization name. (sops-gpg)
   resourcetemplates:
     - apiVersion: gitops.weave.works/v1alpha1
       kind: GitopsCluster
@@ -44,8 +41,6 @@ spec:
           metadata.weave.works/dashboard.prometheus: https://prometheus.io/
           # annotation to hold the kustomization values otherwise templates controller will discard them
           weave.works/sops-kustomization: "bootstrap-${SOPS_KUSTOMIZATION_NAME}"
-          weave.works/sops-repo: "repo-${SOPS_KUSTOMIZATION_GIT_REPO_NAME}"
-          weave.works/sops-path: "path-${SOPS_KUSTOMIZATION_PATH_IN_GIT_REPO}"
       spec:
         capiClusterRef:
           name: "${CLUSTER_NAME}"
