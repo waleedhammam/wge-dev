@@ -54,8 +54,10 @@ spec:
               value: "sops secret"
             - name: KUSTOMIZATION_NAME
               value: "my-secrets"
-            - name: test_env
-              value: "{{ .ObjectMeta.annotations }}"
+            - name: CLUSTER_NAME
+              value: "{{ .ObjectMeta.Name }}"
+            - name: CLUSTER_NAMESPACE
+              value: "{{ .ObjectMeta.Namespace }}"
       restartPolicy: Never
       volumes:
         - name: kubeconfig
