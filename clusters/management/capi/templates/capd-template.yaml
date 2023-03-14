@@ -24,10 +24,10 @@ spec:
       description: Number of control planes
     - name: SOPS_KUSTOMIZATION_NAME
       required: true
-      description: Define sops kustomization name. (my-secrets)
+      description: Define sops kustomization name - default directory in sops in cluster root path. (my-secrets)
     - name: SOPS_SECRET_REF
       required: true
-      description: Define sops kustomization name. (sops-gpg)
+      description: Define sops secret reference name - should be added to cluster bootstrap job aswell. (sops-gpg)
   resourcetemplates:
     - apiVersion: gitops.weave.works/v1alpha1
       kind: GitopsCluster
@@ -41,6 +41,7 @@ spec:
           metadata.weave.works/dashboard.prometheus: https://prometheus.io/
           # annotation to hold the kustomization values otherwise templates controller will discard them
           weave.works/sops-kustomization: "bootstrap-${SOPS_KUSTOMIZATION_NAME}"
+          weave.works/sops-secret-ref: "bootstrap-${SOPS_SECRET_REF}"
       spec:
         capiClusterRef:
           name: "${CLUSTER_NAME}"
