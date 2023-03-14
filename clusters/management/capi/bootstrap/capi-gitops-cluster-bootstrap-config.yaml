@@ -24,8 +24,8 @@ spec:
               "bootstrap",
               "github",
               "--kubeconfig=/etc/gitops/value",
-              "--owner=$GITHUB_USER",
-              "--repository=$GITHUB_REPO",
+              "--owner=${GITHUB_USER}",
+              "--repository=${GITHUB_REPO}",
               "--path=./clusters/{{ .ObjectMeta.Namespace }}/{{ .ObjectMeta.Name }}",
             ]
           envFrom:
@@ -52,6 +52,8 @@ spec:
               value: "test.yourdomain.com"
             - name: KEY_COMMENT
               value: "sops secret"
+            - name: KUSTOMIZATION_NAME
+              value: "my-secrets"
       restartPolicy: Never
       volumes:
         - name: kubeconfig

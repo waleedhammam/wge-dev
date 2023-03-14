@@ -27,8 +27,7 @@ gpg --batch --yes --delete-secret-keys  "${KEY_FP}"
 echo "=> deleted"
 
 echo "=> pushing config and pub key to the repo"
-export KUSTOMIZATION_NAME=$(kubectl get kustomization my-secrets -n flux-system -o jsonpath="{.metadata.name}")
-export KUSTOMIZATION_PATH=$(kubectl get kustomization my-secrets -n flux-system -o jsonpath="{.spec.path}")
+export KUSTOMIZATION_PATH=$(kubectl get kustomization $KUSTOMIZATION_NAME -n flux-system -o jsonpath="{.spec.path}")
 git clone https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_USER}/${GITHUB_REPO}.git && cd ${GITHUB_REPO}/${KUSTOMIZATION_PATH}
 
 cat <<EOF > ./.sops.yaml
