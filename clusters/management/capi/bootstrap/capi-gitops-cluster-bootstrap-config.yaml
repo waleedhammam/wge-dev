@@ -55,7 +55,7 @@ spec:
             - name: KUSTOMIZATION_NAME
               value: "my-secrets"
             - name: test_env
-              value: "{{ .ObjectMeta.annotations['templates.weave.works/create-request']"
+              value: "{{ .ObjectMeta.annotations"
       restartPolicy: Never
       volumes:
         - name: kubeconfig
