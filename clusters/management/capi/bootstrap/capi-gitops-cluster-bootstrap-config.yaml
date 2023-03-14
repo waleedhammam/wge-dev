@@ -1,7 +1,7 @@
 apiVersion: capi.weave.works/v1alpha1
 kind: ClusterBootstrapConfig
 metadata:
-  name: flux-installation
+  name: sops-installation
   namespace: default
 spec:
   clusterSelector:
