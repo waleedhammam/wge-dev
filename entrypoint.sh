@@ -27,9 +27,10 @@ gpg --batch --yes --delete-secret-keys  "${KEY_FP}"
 echo "=> deleted"
 
 echo "=> pushing config and pub key to the repo"
-# to be "./clusters/{{ .ObjectMeta.Namespace }}/{{ .ObjectMeta.Name }}/<your directory>"
-export KUSTOMIZATION_PATH=$(kubectl get kustomization $KUSTOMIZATION_NAME -n flux-system -o jsonpath="{.spec.path}")
-git clone https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_USER}/${GITHUB_REPO}.git && cd ${GITHUB_REPO}/${KUSTOMIZATION_PATH}
+
+export CLUSTER_PATH="clusters/${CLUSTER_NAMESPACE}/${CLUSTER_NAME}"
+git clone https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_USER}/${GITHUB_REPO}.git && cd ${GITHUB_REPO}/${CLUSTER_PATH}
+mkdir sops && cd sops
 
 cat <<EOF > ./.sops.yaml
 creation_rules:
@@ -39,10 +40,10 @@ creation_rules:
 EOF
 gpg --export --armor "${KEY_FP}" > ./.sops.pub.asc
 
-git checkout -b sops-${KUSTOMIZATION_NAME}
+git checkout -b sops-${CLUSTER_NAME}
 git add .
 git commit -m "add public key and sops configuration" --quiet
-git push --set-upstream origin sops-${KUSTOMIZATION_NAME}
+git push --set-upstream origin sops-${CLUSTER_NAME}
 git push --quiet
 echo "=> pushed"
 
