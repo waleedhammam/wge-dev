@@ -51,7 +51,9 @@ spec:
             - name: KEY_NAME
               value: "test.yourdomain.com"
             - name: KEY_COMMENT
-              value: "sops secret"
+              value: "sops secret comment"
+            - name: SOPS_SECRET_REF
+              value: "sops-gpg"
             - name: KUSTOMIZATION_NAME
               value: "my-secrets"
             - name: CLUSTER_NAME

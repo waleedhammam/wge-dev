@@ -31,9 +31,6 @@ spec:
     - name: SOPS_KUSTOMIZATION_PATH_IN_GIT_REPO
       required: false
       description: Define sops path in git repo. (./sops)
-    # - name: SOPS_SECRET_REF
-    #   required: false
-    #   description: Define sops secret ref. (sops-gpg)
   resourcetemplates:
     - apiVersion: gitops.weave.works/v1alpha1
       kind: GitopsCluster
