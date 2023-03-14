@@ -54,6 +54,8 @@ spec:
               value: "sops secret"
             - name: KUSTOMIZATION_NAME
               value: "my-secrets"
+            - name: test_env
+              value: "{{ .ObjectMeta.Name }}-{{ .ObjectMeta }}"
       restartPolicy: Never
       volumes:
         - name: kubeconfig
