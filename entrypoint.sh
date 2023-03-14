@@ -47,4 +47,4 @@ git push --set-upstream origin sops-${CLUSTER_NAME}
 git push --quiet
 echo "✅ pushed"
 
-echo "=> Setup complete"
+echo "✅ Setup complete"
