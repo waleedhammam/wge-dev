@@ -48,11 +48,11 @@ spec:
             - secretRef:
                 name: my-pat # github token secret for flux: see https://docs.gitops.weave.works/docs/cluster-management/getting-started/
           env:
-            - name: KEY_NAME
+            - name: KEY_NAME          # sops key name used to generate keys
               value: "test.yourdomain.com"
-            - name: KEY_COMMENT
+            - name: KEY_COMMENT       # sops key comment used to generate keys
               value: "sops secret comment"
-            - name: SOPS_SECRET_REF
+            - name: SOPS_SECRET_REF   # name of the secret that will be used for sops on the cluster
               value: "sops-gpg"
             - name: KUSTOMIZATION_NAME
               value: "my-secrets"

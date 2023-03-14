@@ -17,7 +17,7 @@ echo "=> generate success"
 
 echo "=> creating secret on the cluster"
 gpg --export-secret-keys --armor "${KEY_FP}" | \
-kubectl create secret generic sops-gpg \
+kubectl create secret generic ${SOPS_SECRET_REF} \
 --namespace=flux-system \
 --from-file=sops.asc=/dev/stdin
 echo "=> creating success"
