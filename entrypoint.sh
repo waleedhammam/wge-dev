@@ -30,7 +30,7 @@ echo "=> pushing config and pub key to the repo"
 
 export CLUSTER_PATH="clusters/${CLUSTER_NAMESPACE}/${CLUSTER_NAME}"
 git clone https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_USER}/${GITHUB_REPO}.git && cd ${GITHUB_REPO}/${CLUSTER_PATH}
-mkdir sops && cd sops
+mkdir -p $CLUSTER_PATH/sops && cd $CLUSTER_PATH/sops
 
 cat <<EOF > ./.sops.yaml
 creation_rules:
