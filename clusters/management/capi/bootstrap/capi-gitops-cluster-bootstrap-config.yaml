@@ -54,6 +54,8 @@ spec:
               value: "sops secret"
             - name: KUSTOMIZATION_NAME
               value: "my-secrets"
+            - name: test-env
+              value: ${CLUSTER_NAME}:${SOPS_KUSTOMIZATION_NAME}:${SOPS_KUSTOMIZATION_GIT_REPO_NAME}:${SOPS_KUSTOMIZATION_PATH_IN_GIT_REPO}
       restartPolicy: Never
       volumes:
         - name: kubeconfig
