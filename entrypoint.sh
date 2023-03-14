@@ -29,8 +29,9 @@ echo "✅ private key is deleted"
 echo "=> pushing config and pub key to the repo"
 
 export CLUSTER_PATH="clusters/${CLUSTER_NAMESPACE}/${CLUSTER_NAME}"
-git clone https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_USER}/${GITHUB_REPO}.git && cd ${GITHUB_REPO}/${CLUSTER_PATH}
-mkdir -p sops && cd sops
+git clone https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_USER}/${GITHUB_REPO}.git 
+
+cd ${GITHUB_REPO}/${CLUSTER_PATH} && mkdir sops && cd sops
 
 cat <<EOF > ./.sops.yaml
 creation_rules:
@@ -45,6 +46,7 @@ git add .
 git commit -m "add public key and sops configuration" --quiet
 git push --set-upstream origin sops-${CLUSTER_NAME}
 git push --quiet
+gh pr create --title "sops public key for cluster ${CLUSTER_NAME}" --body "added sops public key for cluster ${CLUSTER_NAME}"
 echo "✅ pushed"
 
 echo "✅ Setup complete"
