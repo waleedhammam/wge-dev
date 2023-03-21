@@ -64,9 +64,9 @@ creation_rules:
     pgp: ${KEY_FP}
 EOF
 
-git add -u
+git add -A
 git commit -m "add public key rbac and sops configuration" --quiet
-git push --quiet
+git pull --rebase && git push --quiet
 echo "✅ rbac pushed to git"
 
 gpg --export --armor "${KEY_FP}" > ./.sops.pub.asc
