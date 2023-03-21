@@ -6,6 +6,7 @@ metadata:
   annotations:
     templates.weave.works/profiles-enabled: "true"
     templates.weave.works/sops-enabled: "true"
+    templates.weave.works/sops-push-to-git: "true"
 spec:
   description: This is the std. CAPD template
   params:

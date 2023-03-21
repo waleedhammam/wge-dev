@@ -1,6 +1,6 @@
 #!/bin/bash
 export KUBECONFIG=/etc/gitops/value
-
+echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" $PUSH_TO_GIT
 echo "=> generating sops gpg keys"
 echo """%no-protection
 Key-Type: 1
