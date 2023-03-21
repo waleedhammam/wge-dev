@@ -1,7 +1,7 @@
 apiVersion: capi.weave.works/v1alpha1
 kind: CAPITemplate
 metadata:
-  name: waleed-cluster-template-development
+  name: sops-cluster-template-development
   namespace: default
   annotations:
     templates.weave.works/profiles-enabled: "true"
@@ -28,6 +28,9 @@ spec:
     - name: SOPS_SECRET_REF
       required: true
       description: Define sops secret reference name - should be added to cluster bootstrap job aswell. (sops-gpg)
+    - name: SOPS_SECRET_REF_NAMESPACE
+      required: true
+      description: Define sops secret reference namespace - should be added to cluster bootstrap job aswell. (flux-system)
   resourcetemplates:
     - apiVersion: gitops.weave.works/v1alpha1
       kind: GitopsCluster
@@ -42,6 +45,7 @@ spec:
           # annotation to hold the kustomization values otherwise templates controller will discard them
           weave.works/sops-kustomization: "bootstrap-${SOPS_KUSTOMIZATION_NAME}"
           weave.works/sops-secret-ref: "bootstrap-${SOPS_SECRET_REF}"
+          weave.works/sops-secret-ref-namespace: "bootstrap-${SOPS_SECRET_REF_NAMESPACE}"
       spec:
         capiClusterRef:
           name: "${CLUSTER_NAME}"

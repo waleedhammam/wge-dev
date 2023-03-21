@@ -18,13 +18,20 @@ echo "✅ generation success"
 echo "=> creating secret on the cluster"
 gpg --export-secret-keys --armor "${KEY_FP}" | \
 kubectl create secret generic ${SOPS_SECRET_REF} \
---namespace=flux-system \
+--namespace=${SOPS_SECRET_REF_NAMESPACE} \
 --from-file=sops.asc=/dev/stdin
 echo "✅ creation success"
 
 echo "=> deleting secret key"
 gpg --batch --yes --delete-secret-keys  "${KEY_FP}"
 echo "✅ private key is deleted"
+
+echo "=> creating secret for public key on the cluster"
+gpg --export --armor "${KEY_FP}" | \
+kubectl create secret generic ${SOPS_SECRET_REF}-pub \
+--namespace=${SOPS_SECRET_REF_NAMESPACE} \
+--from-file=sops.asc=/dev/stdin
+echo "✅ creation success"
 
 echo "=> pushing config and pub key to the repo"
 
