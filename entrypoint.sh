@@ -38,6 +38,23 @@ echo "=> pushing config and pub key to the repo"
 export CLUSTER_PATH="clusters/${CLUSTER_NAMESPACE}/${CLUSTER_NAME}"
 git clone https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_USER}/${GITHUB_REPO}.git 
 
+echo "=> create rbac for public key secret"
+
+cat <<EOF > ${GITHUB_REPO}/${CLUSTER_PATH}/sops-${SOPS_SECRET_REF}-rbac.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: default
+  name: rbac-${SOPS_SECRET_REF}-pub
+rules:
+- apiGroups: [""]
+  resources: ["secrets"]
+  resourceNames: ["${SOPS_SECRET_REF}-pub"]
+  verbs: ["list", "get"]
+EOF
+
+echo "✅ rbac creation success"
+
 cd ${GITHUB_REPO}/${CLUSTER_PATH} && mkdir sops && cd sops
 
 cat <<EOF > ./.sops.yaml
@@ -46,11 +63,16 @@ creation_rules:
     encrypted_regex: ^(data|stringData)$
     pgp: ${KEY_FP}
 EOF
-gpg --export --armor "${KEY_FP}" > ./.sops.pub.asc
 
+git add -u
+git commit -m "add public key rbac and sops configuration" --quiet
+git push --quiet
+echo "✅ rbac pushed to git"
+
+gpg --export --armor "${KEY_FP}" > ./.sops.pub.asc
 git checkout -b sops-${CLUSTER_NAME}
 git add .
-git commit -m "add public key and sops configuration" --quiet
+git commit -m "add public key" --quiet
 git push --set-upstream origin sops-${CLUSTER_NAME}
 git push --quiet
 gh pr create --title "sops public key for cluster ${CLUSTER_NAME}" --body "added sops public key for cluster ${CLUSTER_NAME}"
