@@ -1,6 +1,6 @@
 #!/bin/bash
 export KUBECONFIG=/etc/gitops/value
-echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" $PUSH_TO_GIT
+
 echo "=> generating sops gpg keys"
 echo """%no-protection
 Key-Type: 1
@@ -69,13 +69,18 @@ git commit -m "add public key rbac and sops configuration" --quiet
 git pull --rebase && git push --quiet
 echo "✅ rbac pushed to git"
 
-gpg --export --armor "${KEY_FP}" > ./.sops.pub.asc
-git checkout -b sops-${CLUSTER_NAME}
-git add .
-git commit -m "add public key" --quiet
-git push --set-upstream origin sops-${CLUSTER_NAME}
-git push --quiet
-gh pr create --title "sops public key for cluster ${CLUSTER_NAME}" --body "added sops public key for cluster ${CLUSTER_NAME}"
-echo "✅ pushed"
+if [[ $PUSH_TO_GIT == true ]]; then
+  gpg --export --armor "${KEY_FP}" > ./.sops.pub.asc
+  git checkout -b sops-${CLUSTER_NAME}
+  git add .
+  git commit -m "add public key" --quiet
+  git push --set-upstream origin sops-${CLUSTER_NAME}
+  git push --quiet
+  gh pr create --title "sops public key for cluster ${CLUSTER_NAME}" --body "added sops public key for cluster ${CLUSTER_NAME}"
+  echo "✅ pushed"
+else
+  echo "✖️ not pushing to public key to git"
+fi
+
 
 echo "✅ Setup complete"
