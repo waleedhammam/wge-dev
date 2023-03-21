@@ -24,8 +24,8 @@ spec:
               "bootstrap",
               "github",
               "--kubeconfig=/etc/gitops/value",
-              "--owner=waleedhammam",
-              "--repository=wge-dev",
+              "--owner=waleedhammam", # to be changed
+              "--repository=wge-dev", # to be changed
               "--path=./clusters/{{ .ObjectMeta.Namespace }}/{{ .ObjectMeta.Name }}",
             ]
           envFrom:
