@@ -48,16 +48,16 @@ spec:
             - secretRef:
                 name: my-pat # github token secret for flux: see https://docs.gitops.weave.works/docs/cluster-management/getting-started/
           env:
-            - name: KEY_NAME          # sops key name used to generate keys
-              value: "test.yourdomain.com"
-            - name: KEY_COMMENT       # sops key comment used to generate keys
-              value: "sops secret comment"
-            - name: SOPS_SECRET_REF   # name of the secret that will be used for sops on the cluster
-              value: "sops-gpg"
-            - name: SOPS_SECRET_REF_NAMESPACE   # namespace of the secret that will be used for sops on the cluster
-              value: "flux-system"
+            - name: KEY_NAME  
+              value: '{{ annotation "weave.works/sops-key-name" }}'
+            - name: KEY_COMMENT  
+              value: '{{ annotation "weave.works/sops-key-comment" }}'
+            - name: SOPS_SECRET_REF 
+              value: '{{ annotation "weave.works/sops-secret-ref" }}'
+            - name: SOPS_SECRET_REF_NAMESPACE
+              value: '{{ annotation "weave.works/sops-secret-ref-namespace" }}'
             - name: PUSH_TO_GIT
-              value: "true"
+              value: '{{ annotation "weave.works/sops-push-to-git" }}'
             - name: CLUSTER_NAME
               value: "{{ .ObjectMeta.Name }}"
             - name: CLUSTER_NAMESPACE
