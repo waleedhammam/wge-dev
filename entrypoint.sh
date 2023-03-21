@@ -44,7 +44,7 @@ cat <<EOF > ${GITHUB_REPO}/${CLUSTER_PATH}/sops-${SOPS_SECRET_REF}-rbac.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  namespace: default
+  namespace: ${SOPS_SECRET_REF_NAMESPACE}
   name: rbac-${SOPS_SECRET_REF}-pub
 rules:
 - apiGroups: [""]
