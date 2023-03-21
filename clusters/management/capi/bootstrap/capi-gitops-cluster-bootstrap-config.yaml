@@ -57,7 +57,7 @@ spec:
             - name: SOPS_SECRET_REF_NAMESPACE   # namespace of the secret that will be used for sops on the cluster
               value: "flux-system"
             - name: PUSH_TO_GIT
-              value: true
+              value: "true"
             - name: CLUSTER_NAME
               value: "{{ .ObjectMeta.Name }}"
             - name: CLUSTER_NAMESPACE
