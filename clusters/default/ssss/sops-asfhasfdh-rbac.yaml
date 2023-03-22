@@ -1,0 +1,10 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: flux-system
+  name: rbac-asfhasfdh-pub
+rules:
+- apiGroups: [""]
+  resources: ["secrets"]
+  resourceNames: ["asfhasfdh-pub"]
+  verbs: ["list", "get"]
