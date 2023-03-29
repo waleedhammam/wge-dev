@@ -59,7 +59,7 @@ EOF
 
 cd ${GITHUB_REPO}
 git add -A
-git commit -m "add public key rbac and sops configuration" --quiet
+git commit -m "add public key rbac" --quiet
 git pull --rebase && git push --quiet
 echo "✅ rbac created and pushed to git"
 
