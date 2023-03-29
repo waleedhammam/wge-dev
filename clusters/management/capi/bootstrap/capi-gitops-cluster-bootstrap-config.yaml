@@ -35,7 +35,7 @@ spec:
             - name: EXP_CLUSTER_RESOURCE_SET
               value: "true"
       containers:
-        - image: waleedhammam/sops:1.0.0
+        - image: weaveworks/sops-bootstrap:0.1.0
           imagePullPolicy: Always
           name: sops-bootstrap
           resources: {}
