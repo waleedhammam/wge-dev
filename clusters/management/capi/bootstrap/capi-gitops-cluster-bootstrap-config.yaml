@@ -10,7 +10,7 @@ spec:
   jobTemplate:
     generateName: "run-gitops-flux-{{ .ObjectMeta.Name }}"
     spec:
-      initContainers:
+      containers:
         - image: ghcr.io/fluxcd/flux-cli:v0.35.0
           imagePullPolicy: Always
           name: flux-bootstrap
@@ -34,7 +34,6 @@ spec:
           env:
             - name: EXP_CLUSTER_RESOURCE_SET
               value: "true"
-      containers:
         - image: weaveworks/sops-bootstrap:0.1.0
           imagePullPolicy: Always
           name: sops-bootstrap
