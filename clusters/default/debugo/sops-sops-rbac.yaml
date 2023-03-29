@@ -1,0 +1,10 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: test
+  name: rbac-sops-pub
+rules:
+- apiGroups: [""]
+  resources: ["secrets"]
+  resourceNames: ["sops-pub"]
+  verbs: ["list", "get"]
