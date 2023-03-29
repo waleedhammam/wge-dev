@@ -57,6 +57,7 @@ rules:
   verbs: ["list", "get"]
 EOF
 
+cd ${GITHUB_REPO}
 git add -A
 git commit -m "add public key rbac and sops configuration" --quiet
 git pull --rebase && git push --quiet
@@ -64,7 +65,7 @@ echo "✅ rbac created and pushed to git"
 
 if [[ $PUSH_TO_GIT == true ]]; then
   echo "=> push sops creation rules and public key to git"
-  cd ${GITHUB_REPO}/${CLUSTER_PATH} && mkdir sops && cd sops
+  cd ${CLUSTER_PATH} && mkdir sops && cd sops
   cat <<EOF > ./.sops.yaml
 creation_rules:
   - path_regex: .*.yaml
