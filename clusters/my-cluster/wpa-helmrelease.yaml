@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: policy-agent
         namespace: flux-system
-      version: 2.3.0
+      version: 2.5.0
   interval: 10m0s
   targetNamespace: policy-system
   install:
