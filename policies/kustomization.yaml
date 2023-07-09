@@ -1,4 +1,4 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- https://raw.githubusercontent.com/weaveworks/policy-agent/dev/policies/ControllerMinimumReplicaCount.yaml
+- https://raw.githubusercontent.com/weaveworks/policy-agent/master/policies/ControllerMinimumReplicaCount.yaml
