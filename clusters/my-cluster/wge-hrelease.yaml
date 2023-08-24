@@ -1,0 +1,38 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  creationTimestamp: "2023-08-24T14:25:52Z"
+  name: weave-gitops-enterprise
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: mccp
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: weave-gitops-enterprise-charts
+        namespace: flux-system
+      version: 0.30.0
+  install:
+    crds: CreateReplace
+  interval: 1h0m0s
+  upgrade:
+    crds: CreateReplace
+  values:
+    config: {}
+    ingress:
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: localhost
+        service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+        service.beta.kubernetes.io/aws-load-balancer-type: nlb
+      className: public-nginx
+      enabled: true
+      hosts:
+      - host: localhost
+        paths:
+        - path: /
+          pathType: ImplementationSpecific
+    tls:
+      enabled: false
+status: {}
