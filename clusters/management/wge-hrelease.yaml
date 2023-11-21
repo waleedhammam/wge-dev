@@ -28,7 +28,16 @@ spec:
             tag: v1.5.2
       enabled: true
       fullnameOverride: cluster
-    config: {}
+    config:
+      capi:
+        baseBranch: ""
+        clusters:
+          namespace: default
+        repositoryClustersPath: ""
+        repositoryPath: /clusters
+        repositoryURL: ""
+        templates:
+          namespace: default
     enablePipelines: true
     gitopssets-controller:
       controllerManager:
@@ -39,7 +48,8 @@ spec:
           - --leader-elect
           - --enabled-generators=GitRepository,Cluster,PullRequests,List,APIClient,Matrix,Config
       enabled: true
-    global: {}
+    global:
+      capiEnabled: true
     tls:
       enabled: false
 status: {}
