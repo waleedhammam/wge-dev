@@ -1,0 +1,45 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  creationTimestamp: null
+  name: weave-gitops-enterprise
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: mccp
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: weave-gitops-enterprise-charts
+        namespace: flux-system
+      version: 0.36.0
+  install:
+    crds: CreateReplace
+  interval: 1h0m0s
+  upgrade:
+    crds: CreateReplace
+  values:
+    cluster-controller:
+      controllerManager:
+        manager:
+          image:
+            repository: docker.io/weaveworks/cluster-controller
+            tag: v1.5.2
+      enabled: true
+      fullnameOverride: cluster
+    config: {}
+    enablePipelines: true
+    gitopssets-controller:
+      controllerManager:
+        manager:
+          args:
+          - --health-probe-bind-address=:8081
+          - --metrics-bind-address=127.0.0.1:8080
+          - --leader-elect
+          - --enabled-generators=GitRepository,Cluster,PullRequests,List,APIClient,Matrix,Config
+      enabled: true
+    global: {}
+    tls:
+      enabled: false
+status: {}
