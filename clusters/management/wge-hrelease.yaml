@@ -39,6 +39,7 @@ spec:
         templates:
           namespace: default
     enablePipelines: true
+    enableTerraformUI: true
     gitopssets-controller:
       controllerManager:
         manager:
