@@ -28,12 +28,7 @@ spec:
             tag: v1.5.2
       enabled: true
       fullnameOverride: cluster
-    config:
-      oidc:
-        clientCredentialsSecret: oidc-auth
-        enabled: true
-        issuerURL: https://dex-01.wge.dev.weave.works
-        redirectURL: http://localhost:8000/oauth2/callback
+    config: {}
     enablePipelines: true
     gitopssets-controller:
       controllerManager:
@@ -45,6 +40,37 @@ spec:
           - --enabled-generators=GitRepository,Cluster,PullRequests,List,APIClient,Matrix,Config
       enabled: true
     global: {}
+    ingress:
+      annotations: {}
+      className: ""
+      enabled: false
+      hosts:
+      - host: ""
+        paths:
+        - path: /
+          pathType: ImplementationSpecific
+      service:
+        name: clusters-service
+        port: 8000
+      tls: []
+    service:
+      annotations: {}
+      clusterIP: ""
+      externalIPs: []
+      externalTrafficPolicy: ""
+      healthCheckNodePort: 0
+      loadBalancerIP: ""
+      loadBalancerSourceRanges: []
+      nodePorts:
+        http: ""
+        https: ""
+        tcp: {}
+        udp: {}
+      port:
+        https: 8000
+      targetPort:
+        https: 8000
+      type: ClusterIP
     tls:
       enabled: false
 status: {}
