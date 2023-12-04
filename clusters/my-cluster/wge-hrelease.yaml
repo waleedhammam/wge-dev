@@ -40,6 +40,37 @@ spec:
           - --enabled-generators=GitRepository,Cluster,PullRequests,List,APIClient,Matrix,Config
       enabled: true
     global: {}
+    ingress:
+      annotations: {}
+      className: ""
+      enabled: false
+      hosts:
+      - host: ""
+        paths:
+        - path: /
+          pathType: ImplementationSpecific
+      service:
+        name: clusters-service
+        port: 8000
+      tls: []
+    service:
+      annotations: {}
+      clusterIP: ""
+      externalIPs: []
+      externalTrafficPolicy: ""
+      healthCheckNodePort: 0
+      loadBalancerIP: ""
+      loadBalancerSourceRanges: []
+      nodePorts:
+        http: ""
+        https: ""
+        tcp: {}
+        udp: {}
+      port:
+        https: 8000
+      targetPort:
+        https: 8000
+      type: ClusterIP
     tls:
       enabled: false
 status: {}
