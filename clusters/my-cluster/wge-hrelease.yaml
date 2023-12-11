@@ -30,6 +30,7 @@ spec:
       fullnameOverride: cluster
     config: {}
     enablePipelines: true
+    enableTerraformUI: true
     gitopssets-controller:
       controllerManager:
         manager:
